@@ -1,0 +1,23 @@
+{
+    "name": "clevis/config-version-extension",
+    "description": "Versions for sample/local Nette configuration files",
+	"minimum-stability": "stable",
+	"license": "MIT",
+	"require": {
+	    "php": ">=5.4",
+        "tracy/tracy": "~2.2.0",
+        "nette/neon": "~2.2.0",
+	    "nette/di": "~2.2.0"
+    },
+	"authors": [
+        {
+            "name": "Mikulas Dite",
+            "email": "mikulas@dite.pro"
+        }
+    ],
+	"autoload": {
+		"psr-0": {
+			"Clevis\\Version\\DI\\": "src/"
+		}
+	}
+}
