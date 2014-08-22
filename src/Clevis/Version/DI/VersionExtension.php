@@ -16,10 +16,18 @@ class VersionExtension extends DI\CompilerExtension
 	public function beforeCompile()
 	{
 		$config = $this->getConfig();
+		if (count($config) !== 1 || !isset($config[0]))
+		{
+			throw new ConfigVersionExtension("Version number not set in config.local.neon. Add this root key: 'version: [1]' to your local config.");
+		}
 		$old = $config[0];
 
 		$raw = file_get_contents($this->getContainerBuilder()->expand(static::SAMPLE_CONFIG));
 		$sample = Neon::decode($raw);
+		if (!isset($sample['version'][0]) || count($sample['version']) !== 1)
+		{
+			throw new ConfigVersionExtension("Version number not set in config.local.sample.neon. Add this root key: 'version: [1]' to your sample config.");
+		}
 		$new = $sample['version'][0];
 
 		if ($old !== $new)
